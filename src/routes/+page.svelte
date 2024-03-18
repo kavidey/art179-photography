@@ -15,15 +15,24 @@
         (object) => base_img_path + object + editedExtension + ".jpeg",
     );
 
+    const allImages = [...object_filenames, ...object_filenames_edited];
+    console.log(allImages);
+
     let objectState = objects.map(() => false);
 </script>
 
+<svelte:head>
+  {#each allImages as image}
+    <link rel="preload" as="image" href={image} />
+  {/each}
+</svelte:head>
+
 <div class="p-5">
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-5">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
         {#each objects as object, i}
             <div>
                 <button on:click={() => (objectState[i] = !objectState[i])}>
-                    <p class="text-white">
+                    <p class="text-white text-xl">
                         {objectState[i] ? "Light" : "Dark"}
                         {toTitleCase(object)}
                     </p>

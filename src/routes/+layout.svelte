@@ -2,6 +2,10 @@
     import "../app.css";
 </script>
 
-<div class="bg-black">
-    <slot />
-</div>
+<slot />
+
+<style lang="scss">
+    :global(body) {
+        @apply bg-black;
+    }
+</style>
